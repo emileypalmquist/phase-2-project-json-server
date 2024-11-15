@@ -5,7 +5,12 @@ const server = jsonServer.create();
 const router = jsonServer.router(path.join(__dirname, "db", "db.json"));
 const middlewares = jsonServer.defaults();
 
-server.use(cors());
+const corsOptions = {
+  origin: 'https://bejewelled-blini-03a1db.netlify.app',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+server.use(cors(corsOptions));
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
 server.use(router);
